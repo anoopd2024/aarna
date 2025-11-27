@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AARNA Homes - Gallery</title>
+
+    <!-- GLightbox CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <!-- Basic Styling -->
+    <style>
+      /* Responsive Gallery Grid */
+      .gallery-section {
+        width: 100%;
+      }
+      .gallery-heading {
+        padding: 1rem 12%;
+      }
+      @media (max-width: 768px) {
+        .gallery-heading {
+          padding: 1rem;
+        }
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        /* grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); */
+        gap: 14px;
+        padding: 1rem;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .gallery a {
+        display: block;
+        overflow: hidden;
+        border-radius: 10px;
+        position: relative;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        transition:
+          transform 0.35s ease,
+          opacity 0.35s ease;
+        display: block;
+      }
+
+      .gallery a:hover img {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <!-- <div class="container nav-container"> -->
+      <div class="logo"><img src="images/logo_web.jpg" width="400px" /></div>
+      <!-- Mobile Menu Toggle (Checkbox and Label/Icon) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+      <!-- The label contains the animated hamburger icon -->
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </label>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="amenities.html">Amenities</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <!-- </div> -->
+    </header>
+    <section class="gallery-section">
+      <div class="gallery-heading">
+        <h1>AARNA - Stories in stills.</h1>
+      </div>
+      <!-- Gallery Section -->
+      <div class="gallery">
+        <a
+          href="images/gallery/bed1.webp"
+          class="glightbox"
+          data-gallery="brochure"
+        >
+          <img
+            src="images/gallery/thumbnails/bed1.webp"
+            loading="lazy"
+            alt="Bed"
+          />
+        </a>
+        <a
+          href="images/gallery/dine.webp"
+          class="glightbox"
+          data-gallery="brochure"
+        >
+          <img
+            src="images/gallery/thumbnails/dine.webp"
+            loading="lazy"
+            alt="Dining Area"
+          />
+        </a>
+        <a
+          href="images/gallery/dine1.webp"
+          class="glightbox"
+          data-gallery="brochure"
+        >
+          <img
+            src="images/gallery/thumbnails/dine1.webp"
+            loading="lazy"
+            alt="Dining Room"
+          />
+        </a>
+        <a
+          href="images/gallery/front 1.webp"
+          class="glightbox"
+          data-gallery="brochure"
+        >
+          <img
+            src="images/gallery/thumbnails/front 1.webp"
+            loading="lazy"
+            alt="Front View"
+          />
+        </a>
+        <a
+          href="images/gallery/front_side.webp"
+          class="glightbox"
+          data-gallery="brochure"
+        >
+          <img
+            src="images/gallery/thumbnails/front_side.webp"
+            loading="lazy"
+            alt="Front Side"
+          />
+        </a>
+        <a
+          href="images/gallery/front_side_close.webp"
+          class="glightbox"
+          data-gallery="brochure"
+        >
+          <img
+            src="images/gallery/thumbnails/front_side_close.webp"
+            loading="lazy"
+            alt="Front Side Close-up"
+          />
+        </a>
+        <a
+          href="images/gallery/frontlat.webp"
+          class="glightbox"
+          data-gallery="brochure"
+        >
+          <img
+            src="images/gallery/thumbnails/frontlat.webp"
+            loading="lazy"
+            alt="Front Lateral View"
+          />
+        </a>
+        <a
+          href="images/gallery/gal1.webp"
+          class="glightbox"
+          data-gallery="brochure"
+        >
+          <img
+            src="images/gallery/thumbnails/gal1.webp"
+            loading="lazy"
+            alt="Gallery View"
+          />
+        </a>
+        <a
+          href="images/gallery/inag2.webp"
+          class="glightbox"
+          data-gallery="brochure"
+        >
+          <img
+            src="images/gallery/thumbnails/inag2.webp"
+            loading="lazy"
+            alt="Inauguration 2"
+          />
+        </a>
+        <a
+          href="images/gallery/inaguration.webp"
+          class="glightbox"
+          data-gallery="brochure"
+        >
+          <img
+            src="images/gallery/thumbnails/inaguration.webp"
+            loading="lazy"
+            alt="Inauguration"
+          />
+        </a>
+        <a
+          href="images/gallery/inside1.webp"
+          class="glightbox"
+          data-gallery="brochure"
+        >
+          <img
+            src="images/gallery/thumbnails/inside1.webp"
+            loading="lazy"
+            alt="Inside View"
+          />
+        </a>
+        <a
+          href="images/gallery/kitchen.webp"
+          class="glightbox"
+          data-gallery="brochure"
+        >
+          <img
+            src="images/gallery/thumbnails/kitchen.webp"
+            loading="lazy"
+            alt="Kitchen"
+          />
+        </a>
+        <a
+          href="images/gallery/sitting.webp"
+          class="glightbox"
+          data-gallery="brochure"
+        >
+          <img
+            src="images/gallery/thumbnails/sitting.webp"
+            loading="lazy"
+            alt="Sitting Area"
+          />
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-column footer-logo">
+          <img src="images/logo_footer.jpg" alt="" width="350px" />
+        </div>
+
+        <div class="footer-column footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#amenities">Amenities</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column footer-social">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 AARNA HOMES. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- GLightbox Script -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script>
+      const lightbox = GLightbox({
+        selector: ".glightbox",
+        touchNavigation: true,
+        loop: true,
+        closeButton: true,
+        slideEffect: "fade",
+        zoomable: true,
+      });
+    </script>
+  </body>
+</html>
