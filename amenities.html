@@ -3,13 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- GSAP -->
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+    <!-- LENIS -->
+    <script src="https://unpkg.com/lenis@1.3.16/dist/lenis.min.js"></script>
+
+    <script src="scripts/mobilenav.js" defer></script>
+
     <title>AARNA HOMES</title>
 
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/amenities.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <style>
+      ol {
+        font-size: 1.6rem;
+      }
+      ol li {
+        list-style-position: inside;
+      }
+    </style>
   </head>
   <body>
     <header class="header">
@@ -33,21 +52,94 @@
       <!-- </div> -->
     </header>
 
-    <section class="hero">
-      <div class="hero-left">
-        <h2>Aminiities Include</h2>
-        <ol>
-          <li>Two comfortable bedrooms</li>
-          <li>A standard kitchen</li>
-          <li>Cozy dining area for family meals</li>
-          <li>
-            Relaxing sit-out to enjoy your morning coffee or evening breeze</li> 
-            Air-conditioned rooms for your comfort 🚗 Easy parking access 📶
-            High-speed Wi-Fi
-          </li>
-        </ol>
-      </div>
-      <div class="hero-right"></div>
+    <section class="grid-wrapper">
+      <section class="grid1">
+        <!-- Row 1 -->
+        <div class="cell empty"></div>
+
+        <label class="cell feature r1c2">
+          <input type="checkbox" />
+          <span class="text">Kitchen</span>
+          <span class="plus">+</span>
+          <div class="overlay">
+            <h3>A Modern Kitchen</h3>
+            <p>
+              A modern Kitchen with Gas stove and Chimeny for those who need to
+              cook.
+            </p>
+          </div>
+        </label>
+
+        <div class="cell empty"></div>
+
+        <label class="cell feature r1c4">
+          <input type="checkbox" />
+          <span class="text">Dining Area</span>
+          <span class="plus">+</span>
+          <div class="overlay">
+            <h3>Dining Area</h3>
+            <p>Cozy dining area for family meals.</p>
+          </div>
+        </label>
+
+        <div class="cell empty"></div>
+
+        <!-- Row 2 -->
+        <div class="cell title r2c1-2">
+          <h1>AARNA: <br />WHAT WE OFFER</h1>
+        </div>
+
+        <label class="cell feature r2c3">
+          <input type="checkbox" />
+          <span class="text">Two Bedrooms</span>
+          <span class="plus">+</span>
+          <div class="overlay">
+            <h3>Two A/c Bedrooms</h3>
+            <p>Two modern A/c Bedroom good enough for a family of four</p>
+          </div>
+        </label>
+
+        <div class="cell empty"></div>
+
+        <label class="cell feature r2c5">
+          <input type="checkbox" />
+          <span class="text">Parking</span>
+          <span class="plus">+</span>
+          <div class="overlay">
+            <h3>Parking</h3>
+            <p>Easy Parking Access</p>
+          </div>
+        </label>
+
+        <!-- Row 3 -->
+        <label class="cell feature r3c1">
+          <input type="checkbox" />
+          <span class="text">Connectivity</span>
+          <span class="plus">+</span>
+          <div class="overlay">
+            <h3>Connectivity</h3>
+            <p>High speed WiFi Connectivity</p>
+          </div>
+        </label>
+
+        <div class="cell empty"></div>
+
+        <label class="cell feature r3c3">
+          <input type="checkbox" />
+          <span class="text">Prime Location</span>
+          <span class="plus">+</span>
+          <div class="overlay">
+            <h3>Prime Location</h3>
+            <p>
+              Aarna Homes is in the heart of Mangalore,keeping you close to
+              everything — popular restaurants, shopping centers, temples,
+              beaches, and transport hubs — all within easy reach.
+            </p>
+          </div>
+        </label>
+
+        <div class="cell empty"></div>
+      </section>
     </section>
 
     <footer class="footer">
@@ -85,4 +177,92 @@
       </div>
     </footer>
   </body>
+  <script>
+    gsap.fromTo(
+      ".grid-wrapper",
+      {
+        opacity: 0,
+        filter: "blur(6px)",
+        scale: 1.02,
+      },
+      {
+        opacity: 1,
+        filter: "blur(0px)",
+        scale: 1,
+        duration: 1.2,
+        ease: "power2.out",
+        delay: 0.15,
+      },
+    );
+
+    gsap.from(".grid1 .title h1", {
+      opacity: 0,
+      letterSpacing: "0.08em",
+      duration: 0.9,
+      ease: "power2.out",
+      delay: 0.35,
+    });
+
+    const cells = document.querySelectorAll(".cell.feature");
+
+    function resetState() {
+      cells.forEach((cell) => {
+        cell.classList.remove("is-muted", "is-active");
+
+        const overlay = cell.querySelector(".overlay");
+        const text = overlay.querySelectorAll("h3, p");
+
+        gsap.to(overlay, {
+          opacity: 0,
+          clipPath: "inset(12% 12% 12% 12%)",
+          pointerEvents: "none",
+          duration: 0.25,
+          ease: "power2.inOut",
+        });
+
+        gsap.to(text, {
+          opacity: 0,
+          y: 8,
+          duration: 0.2,
+          ease: "power2.inOut",
+        });
+      });
+    }
+
+    cells.forEach((activeCell) => {
+      const overlay = activeCell.querySelector(".overlay");
+      const text = overlay.querySelectorAll("h3, p");
+
+      activeCell.addEventListener("mouseenter", () => {
+        // Mute others (background + header color)
+        cells.forEach((cell) => {
+          if (cell !== activeCell) {
+            cell.classList.add("is-muted");
+          }
+        });
+
+        activeCell.classList.add("is-active");
+
+        // Reveal overlay
+        gsap.to(overlay, {
+          opacity: 1,
+          clipPath: "inset(0% 0% 0% 0%)",
+          pointerEvents: "auto",
+          duration: 0.5,
+          ease: "power3.out",
+        });
+
+        gsap.to(text, {
+          opacity: 1,
+          y: 0,
+          stagger: 0.06,
+          delay: 0.05,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+      });
+
+      activeCell.addEventListener("mouseleave", resetState);
+    });
+  </script>
 </html>

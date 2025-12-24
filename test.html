@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Aarna Homes – Fictional Spaces Grid Reveal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- GSAP -->
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+    <!-- LENIS (elastic scroll – REQUIRED) -->
+    <script src="https://unpkg.com/lenis@1.3.16/dist/lenis.min.js"></script>
+    <style>
+      :root {
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #0e0d0d;
+        color: #fff;
+        font-family: system-ui, sans-serif;
+      }
+
+      /* -------------------------------- */
+      /* HERO */
+      /* -------------------------------- */
+      header {
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        font-size: clamp(2rem, 6vw, 4rem);
+      }
+
+      /* -------------------------------- */
+      /* SECTION */
+      /* -------------------------------- */
+      .reasons {
+        height: 420vh;
+        position: relative;
+      }
+
+      .reasons-sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+      }
+
+      /* -------------------------------- */
+      /* GRID */
+      /* -------------------------------- */
+      .main-grid {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-rows: repeat(3, minmax(0, 1fr));
+      }
+
+      /* -------------------------------- */
+      /* BACKGROUND (single image) */
+      /* -------------------------------- */
+      .background-img {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: inherit;
+        grid-template-rows: inherit;
+        z-index: 0;
+      }
+
+      .background-tile {
+        overflow: hidden;
+        clip-path: inset(calc(100% * var(--progress, 1)) 0 0 0);
+      }
+
+      .background-tile img {
+        position: absolute;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        pointer-events: none;
+      }
+
+      /* -------------------------------- */
+      /* GRID LINES */
+      /* -------------------------------- */
+      .lines-grid {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0;
+      }
+
+      .lines-v,
+      .lines-h {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      .lines-v {
+        flex-direction: row;
+      }
+      .lines-h {
+        flex-direction: column;
+      }
+
+      .lines-item {
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      .lines-v .lines-item {
+        width: 1px;
+        height: 100%;
+        transform-origin: bottom;
+        transform: scaleY(0);
+      }
+
+      .lines-h .lines-item {
+        height: 1px;
+        width: 100%;
+        transform-origin: right;
+        transform: scaleX(0);
+      }
+
+      /* -------------------------------- */
+      /* PROCESS ITEMS (THIS IS THE KEY) */
+      /* -------------------------------- */
+      .process_item {
+        background: #fff;
+        color: #0e0d0d;
+        padding: clamp(1.2rem, 2vw, 2.4rem);
+        z-index: 2;
+        pointer-events: none;
+
+        opacity: calc(var(--progress, 0) - var(--backProgress, 0));
+
+        transition:
+          background-color 0.6s var(--ease),
+          color 0.6s var(--ease);
+      }
+
+      .process_item h3 {
+        font-size: clamp(1rem, 1.6vw, 1.5rem);
+        margin-bottom: 0.5rem;
+      }
+
+      .process_item p {
+        font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+        line-height: 1.4;
+      }
+
+      /* -------------------------------- */
+      /* GRID POSITIONS – DESKTOP */
+      /* -------------------------------- */
+      .p1 {
+        grid-column: 1;
+        grid-row: 1;
+      }
+      .p2 {
+        grid-column: 3;
+        grid-row: 1;
+      }
+      .p3 {
+        grid-column: 5;
+        grid-row: 1;
+      }
+      .p4 {
+        grid-column: 2;
+        grid-row: 2;
+      }
+      .p5 {
+        grid-column: 4;
+        grid-row: 2;
+      }
+      .p6 {
+        grid-column: 1;
+        grid-row: 3;
+      }
+      .p7 {
+        grid-column: 3;
+        grid-row: 3;
+      }
+      .p8 {
+        grid-column: 5;
+        grid-row: 3;
+      }
+
+      /* -------------------------------- */
+      /* MOBILE REMAP */
+      /* -------------------------------- */
+      @media (max-width: 768px) {
+        .main-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-rows: repeat(4, minmax(0, 1fr));
+        }
+
+        .p1 {
+          grid-column: 1;
+          grid-row: 1;
+        }
+        .p2 {
+          grid-column: 2;
+          grid-row: 1;
+        }
+        .p3 {
+          grid-column: 1;
+          grid-row: 2;
+        }
+        .p4 {
+          grid-column: 2;
+          grid-row: 2;
+        }
+        .p5 {
+          grid-column: 1;
+          grid-row: 3;
+        }
+        .p6 {
+          grid-column: 2;
+          grid-row: 3;
+        }
+        .p7 {
+          grid-column: 1;
+          grid-row: 4;
+        }
+        .p8 {
+          grid-column: 2;
+          grid-row: 4;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>Aarna Homes</header>
+
+    <section class="reasons">
+      <div class="reasons-sticky">
+        <div class="main-grid">
+          <!-- BACKGROUND GRID (15 tiles, ONE IMAGE) -->
+          <div class="background-img">
+            <!-- 15 tiles -->
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+            <div class="background-tile">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+              />
+            </div>
+          </div>
+
+          <!-- LINES -->
+          <div class="lines-grid">
+            <div class="lines-v">
+              <div class="lines-item"></div>
+              <div class="lines-item"></div>
+              <div class="lines-item"></div>
+              <div class="lines-item"></div>
+            </div>
+            <div class="lines-h">
+              <div class="lines-item"></div>
+              <div class="lines-item"></div>
+            </div>
+          </div>
+
+          <!-- PROCESS ITEMS -->
+          <div class="process_item p1">
+            <h3>Prime Locations</h3>
+            <p>Strategic and fast-growing areas.</p>
+          </div>
+          <div class="process_item p2">
+            <h3>Modern Design</h3>
+            <p>Contemporary layouts and finishes.</p>
+          </div>
+          <div class="process_item p3">
+            <h3>Trusted Quality</h3>
+            <p>Built with care and expertise.</p>
+          </div>
+          <div class="process_item p4">
+            <h3>Smart Living</h3>
+            <p>Optimized for everyday comfort.</p>
+          </div>
+          <div class="process_item p5">
+            <h3>Sustainability</h3>
+            <p>Energy-efficient, future-ready.</p>
+          </div>
+          <div class="process_item p6">
+            <h3>Investment Value</h3>
+            <p>Homes that appreciate with time.</p>
+          </div>
+          <div class="process_item p7">
+            <h3>Community Focus</h3>
+            <p>Designed for connected living.</p>
+          </div>
+          <div class="process_item p8">
+            <h3>Aarna Promise</h3>
+            <p>Commitment beyond construction.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      /* LENIS – elastic scroll */
+      const lenis = new Lenis({
+        duration: 1.4,
+        easing: (t) => 1 - Math.pow(2, -10 * t),
+        smoothWheel: true,
+      });
+
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.remove(gsap.updateRoot);
+      gsap.ticker.add((t) => lenis.raf(t * 1000));
+
+      /* RESPONSIVE BUILD */
+      function build() {
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+        gsap.killTweensOf("*");
+
+        const mobile = window.innerWidth <= 768;
+        const grid = mobile ? [4, 2] : [3, 5];
+
+        /* BACKGROUND */
+        gsap.fromTo(
+          ".background-tile",
+          { "--progress": 1 },
+          {
+            "--progress": 0,
+            ease: "linear",
+            stagger: { grid, from: "end", each: 0.07 },
+            scrollTrigger: {
+              trigger: ".reasons",
+              start: "top top",
+              end: "40%",
+              scrub: true,
+            },
+          },
+        );
+
+        /* LINES */
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: ".reasons",
+              start: "40%",
+              end: "55%",
+              scrub: true,
+            },
+          })
+          .to(".lines-grid", { opacity: 1 })
+          .to(".lines-v .lines-item", { scaleY: 1, stagger: 0.05 }, "<")
+          .to(".lines-h .lines-item", { scaleX: 1, stagger: 0.05 }, "<");
+
+        /* PROCESS ITEMS – ENTER */
+        gsap.fromTo(
+          ".process_item",
+          { "--progress": 0 },
+          {
+            "--progress": 1,
+            ease: "linear",
+            stagger: { grid, from: "start", each: 0.06 },
+            scrollTrigger: {
+              trigger: ".reasons",
+              start: "55%",
+              end: "80%",
+              scrub: true,
+            },
+          },
+        );
+
+        /* PROCESS ITEMS – EXIT (back scroll) */
+        gsap.fromTo(
+          ".process_item",
+          { "--backProgress": 0 },
+          {
+            "--backProgress": 1,
+            ease: "linear",
+            stagger: { grid, from: "end", each: 0.05 },
+            scrollTrigger: {
+              trigger: ".reasons",
+              start: "80%",
+              end: "95%",
+              scrub: true,
+            },
+          },
+        );
+      }
+
+      build();
+      window.addEventListener("resize", () => {
+        clearTimeout(window.__r);
+        window.__r = setTimeout(() => {
+          build();
+          ScrollTrigger.refresh();
+        }, 250);
+      });
+    </script>
+  </body>
+</html>
