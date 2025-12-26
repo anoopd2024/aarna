@@ -15,6 +15,7 @@
     <script src="scripts/mobilenav.js" defer></script>
 
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/testi-slider.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -95,16 +96,59 @@
       </div>
     </section>
 
-    <section class="testimonial-full">
-      <div class="testimonial-content">
-        <h2>What Our Guests Say</h2>
-        <p class="quote">
-          “ Our stay at Aarna Homes was absolutely delightful! The rooms were
-          clean, cozy, and the location made it easy to explore Mangalore. We
-          felt welcomed like family and will definitely stay again on our next
-          visit. ”
-        </p>
-        <p class="guest">— Meera & Family</p>
+    <section class="testimonials">
+      <div class="testimonials-inner">
+        <h2 class="testimonials-heading">Guest Experiences</h2>
+
+        <div class="testimonial-slider" id="testimonialSlider">
+          <div class="testimonial-track">
+            <!-- Slide 1 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <img src="images/rev1.jpg" alt="Priya Sharma" />
+                <p class="quote">
+                  “The stay at Aarna Homes was very pleasant. It truly felt like
+                  a home away from home.”
+                </p>
+                <h4>Adv. S Syed Mubarak</h4>
+                <span>Kerala </span>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <img src="images/rev2.jpg" alt="Sheela Santhosh" />
+                <p class="quote">
+                  “Very peaceful stay. Everything you need is close by. Highly
+                  recommended!”
+                </p>
+                <h4>Sheela Santhosh</h4>
+                <span>Kannur</span>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <img src="images/rev3.jpg" alt="Rahul Menon" />
+                <p class="quote">
+                  “Clean rooms, friendly hosts, and a great location. Will visit
+                  again.”
+                </p>
+                <h4>Rahul Menon</h4>
+                <span>Bangalore</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <button class="slider-btn prev">‹</button>
+          <button class="slider-btn next">›</button>
+
+          <!-- Dots -->
+          <div class="slider-dots"></div>
+        </div>
       </div>
     </section>
 
@@ -143,4 +187,47 @@
       </div>
     </footer>
   </body>
+  <script>
+    const slider = document.getElementById("testimonialSlider");
+    const track = slider.querySelector(".testimonial-track");
+    const slides = slider.querySelectorAll(".testimonial-slide");
+    const prevBtn = slider.querySelector(".prev");
+    const nextBtn = slider.querySelector(".next");
+    const dotsContainer = slider.querySelector(".slider-dots");
+
+    let index = 0;
+    const total = slides.length;
+
+    // Create dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement("button");
+      if (i === 0) dot.classList.add("active");
+      dot.addEventListener("click", () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = dotsContainer.querySelectorAll("button");
+
+    function updateSlider() {
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d) => d.classList.remove("active"));
+      dots[index].classList.add("active");
+    }
+
+    function goToSlide(i) {
+      index = (i + total) % total;
+      updateSlider();
+    }
+
+    prevBtn.addEventListener("click", () => goToSlide(index - 1));
+    nextBtn.addEventListener("click", () => goToSlide(index + 1));
+
+    // Auto play
+    let autoPlay = setInterval(() => goToSlide(index + 1), 6000);
+
+    slider.addEventListener("mouseenter", () => clearInterval(autoPlay));
+    slider.addEventListener("mouseleave", () => {
+      autoPlay = setInterval(() => goToSlide(index + 1), 6000);
+    });
+  </script>
 </html>

@@ -25,15 +25,6 @@ body {
   line-height: 1.5;
 }
 
-.container {
-  /* width: 90%; */
-  /* max-width: 1500px; */
-  /* margin: auto; */
-  /* border: 1px solid; */
-}
-
-/* Header */
-
 /* ===== Header Base ===== */
 .header {
   position: relative;
@@ -62,12 +53,26 @@ body {
   color: var(--color-text);
   font-size: 1.2rem;
   font-weight: 600;
+  position: relative;
   display: block;
   transition: var(--transition);
 }
 
 .nav a:hover {
   color: var(--color-text);
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(var(--underline, 0));
+  transform-origin: left;
+  transition: transform 0.25s ease;
 }
 
 /* ===== Hamburger Button ===== */

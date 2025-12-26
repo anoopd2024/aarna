@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AARNA HOMES</title>
 
+    <!-- GSAP -->
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+    <!-- LENIS -->
+    <script src="https://unpkg.com/lenis@1.3.16/dist/lenis.min.js"></script>
+
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/testmonial.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -32,6 +40,94 @@
       </nav>
       <!-- </div> -->
     </header>
+    <section class="testimonials-section">
+      <div class="testimonials-title">
+        <h5>Guest Experiences</h5>
+        <h2>Stories from Aarna</h2>
+        <p>
+          Discover why our guests call Aarna their sanctury away from home. Real
+          stories of comfort, connection and peace.
+        </p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="quote-section">
+            <span class="quote-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#c9a227"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="quote-icon"
+              >
+                <path
+                  d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"
+                />
+                <path
+                  d="M15 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"
+                />
+              </svg>
+            </span>
+            <p class="quote-text">
+              "The stay at aarnahomes was very good and pleasant.we felt a
+              homely presence in the stay. We hope to have a future stay at
+              aarnahomes when we plan to come to mangalore."
+            </p>
+          </div>
+          <div class="guest-section">
+            <img src="images/rev1.jpg" alt="Guest Name" class="guest-image" />
+            <div class="guest-info">
+              <h3 class="guest-name">Adv. S Syed Mubarak</h3>
+              <p class="guest-location">Mumbai, India</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-section">
+            <span class="quote-icon">
+              <!-- Quote Icon SVG -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#c9a227"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="quote-icon"
+              >
+                <path
+                  d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"
+                />
+                <path
+                  d="M15 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"
+                />
+              </svg>
+            </span>
+            <p class="quote-text">
+              “Very peaceful stay. Everything you need is just a short walk
+              away.The rooms were clean, cozy, and the location made it easy to
+              explore Mangalore.”
+            </p>
+          </div>
+          <div class="guest-section">
+            <img src="images/rev2.jpg" alt="Guest Name" class="guest-image" />
+            <div class="guest-info">
+              <h3 class="guest-name">Sheela Santhosh</h3>
+              <p class="guest-location">Kannur</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer class="footer">
       <div class="footer-top">
@@ -67,5 +163,6 @@
         <p>© 2025 AARNA HOMES. All rights reserved.</p>
       </div>
     </footer>
+    <script src="scripts/mobilenav.js"></script>
   </body>
 </html>
